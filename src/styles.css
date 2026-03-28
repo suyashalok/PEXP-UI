@@ -1,0 +1,11 @@
+html,
+body {
+  margin: 0;
+  font-family: Inter, Roboto, "Helvetica Neue", sans-serif;
+  background: #f7f8fc;
+  color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
