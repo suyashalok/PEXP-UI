@@ -3,9 +3,18 @@ import { authGuard } from './core/guards/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
-    path: 'auth',
+    path: 'landing',
+    loadComponent: () => import('./auth/pages/landing.page').then((m) => m.LandingPage)
+  },
+  {
+    path: 'registration',
     loadComponent: () =>
-      import('./auth/pages/auth-shell.page').then((m) => m.AuthShellPage)
+      import('./auth/pages/registration.page').then((m) => m.RegistrationPage)
+  },
+  {
+    path: 'auth',
+    redirectTo: 'landing',
+    pathMatch: 'full'
   },
   {
     path: '',
@@ -26,5 +35,5 @@ export const APP_ROUTES: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'landing' }
 ];

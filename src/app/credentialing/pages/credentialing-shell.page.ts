@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewChild, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { StepperShellComponent } from '../components/stepper/stepper-shell.component';
+import { CredPackStepperWrapperComponent } from '../components/stepper/cred-pack-stepper-wrapper.component';
 import { CredentialingStore } from '../store/credentialing.store';
 import { CredentialingStepConfig, CredentialingFormValue } from '../models/credentialing.models';
 import {
@@ -26,7 +26,7 @@ interface CredentialingMasterForm {
   imports: [
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    StepperShellComponent,
+    CredPackStepperWrapperComponent,
     BusinessInfoStepComponent,
     LicenseUploadStepComponent,
     ReviewSubmitStepComponent
@@ -36,7 +36,7 @@ interface CredentialingMasterForm {
       @if (vm.loading) {
         <mat-spinner diameter="38"></mat-spinner>
       } @else {
-        <pbm-stepper-shell
+        <pbm-cred-pack-stepper-wrapper [totalSteps]="45"
           [steps]="visibleSteps()"
           [activeIndex]="vm.stepIndex"
           (next)="onNext(vm.stepIndex)"
@@ -58,7 +58,7 @@ interface CredentialingMasterForm {
               <pbm-review-submit-step [form]="masterForm.controls.review" [summary]="toPayload()"></pbm-review-submit-step>
             }
           }
-        </pbm-stepper-shell>
+        </pbm-cred-pack-stepper-wrapper>
 
         <p><strong>Status:</strong> {{ vm.workflowStatus?.status ?? 'draft' }}</p>
         <p><strong>E-signature:</strong> {{ vm.signatureStatusLabel }}</p>
