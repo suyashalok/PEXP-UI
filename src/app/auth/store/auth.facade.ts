@@ -41,7 +41,7 @@ export class AuthFacade {
   logout(): void {
     this.oktaAuthService.logout();
     this.authStore.clearSession();
-    void this.router.navigate(['/auth']);
+    void this.router.navigate(['/landing']);
   }
 
   getAccessToken(): string | null {
